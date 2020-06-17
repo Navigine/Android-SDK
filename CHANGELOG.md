@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file. NavigineSDK
 uses calendar versioning in the format `YYYYMMDD`.
 
+## Version 20200617
+
+Download link [NavigineSDK.jar](https://github.com/Navigine/Android-SDK/blob/0d081bc251cad0a63a9a19a253339872ce8fd198/libs/NavigineSDK.jar?raw=true)
+
+* Added public function for providing custom wifi rtt signals.
+```java
+  public void provideWifiRttMeasurement(String BSSID, float distance, int level, float stddev)
+```
+* Navigation using WiFi RTT improved
+
 ## Version 20200601
 
 Download link [NavigineSDK.jar](https://github.com/Navigine/Android-SDK/blob/a58687bf3a364e53193c9e9f32344be0255101d8/libs/NavigineSDK.jar?raw=true)
