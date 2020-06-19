@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file. NavigineSDK
 uses calendar versioning in the format `YYYYMMDD`.
 
+Download link [NavigineSDK.jar](https://github.com/Navigine/Android-SDK/blob/ada65e5f6baa24028cdb41b4167e6fd4eba3d48e/libs/NavigineSDK.jar?raw=true)
+
+* Navigation using WiFi RTT improved
+
 ## Version 20200617
 
 Download link [NavigineSDK.jar](https://github.com/Navigine/Android-SDK/blob/0d081bc251cad0a63a9a19a253339872ce8fd198/libs/NavigineSDK.jar?raw=true)
