@@ -116,6 +116,8 @@ public class MainActivity extends Activity
         }
       }
     );
+
+    mNavigation = NavigineSDK.getNavigation();
     
     // Loading map only when location view size is known
     mLocationView.addOnLayoutChangeListener
@@ -129,7 +131,7 @@ public class MainActivity extends Activity
           if (width == 0 || height == 0)
             return;
           
-          Log.d(TAG, "Layout chaged: " + width + "x" + height);
+          Log.d(TAG, "Layout changed: " + width + "x" + height);
           
           int oldWidth  = oldRight  - oldLeft;
           int oldHeight = oldBottom - oldTop;
@@ -140,7 +142,6 @@ public class MainActivity extends Activity
     );
     
     mDisplayDensity = getResources().getDisplayMetrics().density;
-    mNavigation     = NavigineSDK.getNavigation();
     
     // Setting up device listener
     if (mNavigation != null)
