@@ -26,5 +26,5 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:26.0.0-alpha1'
-    compile 'com.github.Navigine:Android-SDK:20201103'
+    compile 'com.github.Navigine:Android-SDK:20201210'
 }
