@@ -4,7 +4,6 @@ import android.app.*;
 import android.content.*;
 import android.graphics.*;
 import android.os.*;
-import android.support.annotation.RequiresApi;
 import android.view.*;
 import android.view.View.*;
 import android.widget.*;
@@ -394,12 +393,6 @@ public class MainActivity extends Activity
     if (mDeviceInfo.isValid() && mDeviceInfo.getPaths().size() != 0) {
       if (mDeviceInfo.getPaths().get(0).getEvents().size() >= 1)
         showDirections(mDeviceInfo.getPaths().get(0));
-//      float distance = mDeviceInfo.getPaths().get(0).getLength();
-//      if (distance != 0.0f) {
-//        infoText = String.format(Locale.ENGLISH, "%.0f m", distance);
-//        double time = (distance / 1.43) / 60;
-//        timeText = time < 1 ? "< 1 min" : String.format(Locale.ENGLISH, "%.0f min", time);
-//      }
     }
     else
       mDirectionLayout.setVisibility(GONE);
@@ -967,7 +960,6 @@ public class MainActivity extends Activity
 
   private void showDirections(RoutePath path)
   {
-    //addRouteEventsToList(path);
     switch (path.getEvents().get(0).getType())
     {
       case RouteEvent.TURN_LEFT:
