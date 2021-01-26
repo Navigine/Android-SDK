@@ -4,6 +4,7 @@ import android.app.*;
 import android.content.*;
 import android.graphics.*;
 import android.os.*;
+import android.support.annotation.RequiresApi;
 import android.view.*;
 import android.view.View.*;
 import android.widget.*;
@@ -13,6 +14,8 @@ import java.lang.*;
 import java.util.*;
 
 import com.navigine.naviginesdk.*;
+
+import static android.view.View.GONE;
 
 public class MainActivity extends Activity
 {
@@ -54,7 +57,11 @@ public class MainActivity extends Activity
   private LocationPoint mPinPoint                 = null; // Potential device target
   private LocationPoint mTargetPoint              = null; // Current device target
   private RectF         mPinPointRect             = null;
-  
+
+  private RelativeLayout mDirectionLayout         = null;
+  private TextView       mDirectionTextView       = null;
+  private ImageView      mDirectionImageView      = null;
+
   private Bitmap  mVenueBitmap    = null;
   private Venue   mTargetVenue    = null;
   private Venue   mSelectedVenue  = null;
@@ -83,6 +90,10 @@ public class MainActivity extends Activity
     mZoomOutView = (View)findViewById(R.id.navigation__zoom_out_view);
     mAdjustModeView = (View)findViewById(R.id.navigation__adjust_mode_view);
     mErrorMessageLabel = (TextView)findViewById(R.id.navigation__error_message_label);
+
+    mDirectionTextView  = findViewById(R.id.navigation__direction_distance);
+    mDirectionImageView = findViewById(R.id.navigation__direction_image);
+    mDirectionLayout    = findViewById(R.id.navigation__direction_layout);
 
     mBackView.setVisibility(View.INVISIBLE);
     mPrevFloorView.setVisibility(View.INVISIBLE);
@@ -142,6 +153,7 @@ public class MainActivity extends Activity
     );
     
     mDisplayDensity = getResources().getDisplayMetrics().density;
+    mDirectionLayout.setVisibility(GONE);
     
     // Setting up device listener
     if (mNavigation != null)
@@ -256,6 +268,7 @@ public class MainActivity extends Activity
 
     mNavigation.cancelTargets();
     mBackView.setVisibility(View.GONE);
+    mDirectionLayout.setVisibility(GONE);
     mLocationView.redraw();
   }
 
@@ -377,6 +390,19 @@ public class MainActivity extends Activity
     // Check if location is loaded
     if (mLocation == null || mCurrentSubLocationIndex < 0)
       return;
+
+    if (mDeviceInfo.isValid() && mDeviceInfo.getPaths().size() != 0) {
+      if (mDeviceInfo.getPaths().get(0).getEvents().size() >= 1)
+        showDirections(mDeviceInfo.getPaths().get(0));
+//      float distance = mDeviceInfo.getPaths().get(0).getLength();
+//      if (distance != 0.0f) {
+//        infoText = String.format(Locale.ENGLISH, "%.0f m", distance);
+//        double time = (distance / 1.43) / 60;
+//        timeText = time < 1 ? "< 1 min" : String.format(Locale.ENGLISH, "%.0f min", time);
+//      }
+    }
+    else
+      mDirectionLayout.setVisibility(GONE);
     
     if (mDeviceInfo.isValid())
     {
@@ -937,6 +963,26 @@ public class MainActivity extends Activity
       mAdjustTime   = timeNow;
       mLocationView.scrollBy(deltaX, deltaY);
     }
+  }
+
+  private void showDirections(RoutePath path)
+  {
+    //addRouteEventsToList(path);
+    switch (path.getEvents().get(0).getType())
+    {
+      case RouteEvent.TURN_LEFT:
+        mDirectionImageView.setBackgroundResource(R.drawable.ic_left);
+        break;
+      case RouteEvent.TURN_RIGHT:
+        mDirectionImageView.setBackgroundResource(R.drawable.ic_right);
+        break;
+      case RouteEvent.TRANSITION:
+        mDirectionImageView.setBackgroundResource(R.drawable.ic_escalator);
+        break;
+    }
+    float nextTurnDistance = Math.max(path.getEvents().get(0).getDistance(), 1);
+    mDirectionTextView.setText(String.format(Locale.ENGLISH,"%.0f m", nextTurnDistance));
+    mDirectionLayout.setVisibility(View.VISIBLE);
   }
   
   private String getLogFile(String extension)

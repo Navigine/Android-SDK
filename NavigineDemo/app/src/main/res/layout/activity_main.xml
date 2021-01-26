@@ -1,59 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:background="#14273D">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#14273D">
 
     <!-- Main layout -->
     <FrameLayout android:id="@+id/navigation__main_layout"
-                 android:layout_width="fill_parent"
-                 android:layout_height="fill_parent">
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
 
         <com.navigine.naviginesdk.LocationView android:id="@+id/navigation__location_view"
-                  android:layout_width="fill_parent"
-                  android:layout_height="fill_parent"/>
-        
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"/>
+
+        <RelativeLayout
+            android:id="@+id/navigation__direction_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_gravity="top|left"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="85dp"
+            android:background="@drawable/btn_zoom_background"
+            android:elevation="1dp"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/navigation__direction_image"
+                android:layout_width="wrap_content"
+                android:layout_height="16dp"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp"
+                android:layout_marginStart="12dp"/>
+
+            <TextView
+                android:id="@+id/navigation__direction_distance"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:layout_toEndOf="@id/navigation__direction_image"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="12dp"
+                android:textColor="#152D47"
+                android:textSize="22sp"/>
+
+        </RelativeLayout>
+
         <TextView android:id="@+id/navigation__info_label"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:layout_gravity="bottom|center"
-                  android:layout_marginBottom="10dp"
-                  android:background="#EC7703"
-                  android:textSize="16dp"
-                  android:textColor="#000000"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            android:layout_marginBottom="10dp"
+            android:background="#EC7703"
+            android:textSize="16dp"
+            android:textColor="#000000"/>
 
         <!-- Previous floor button -->
         <LinearLayout android:id="@+id/navigation__back_view"
-                     android:orientation="horizontal"
-                     android:layout_width="fill_parent"
-                     android:layout_height="wrap_content"
-                     android:layout_gravity="top|left"
-                     android:layout_marginTop="0dp"
-                     android:layout_marginLeft="0dp"
-                     android:paddingTop="35dp"
-                     android:paddingLeft="10dp"
-                     android:paddingRight="10dp"
-                     android:paddingBottom="10dp"
-                     android:background="#90aaaaaa"
-                     android:onClick="onCancelRoute">
+             android:orientation="horizontal"
+             android:layout_width="fill_parent"
+             android:layout_height="wrap_content"
+             android:layout_gravity="top|left"
+             android:layout_marginTop="0dp"
+             android:layout_marginLeft="0dp"
+             android:paddingTop="35dp"
+             android:paddingLeft="10dp"
+             android:paddingRight="10dp"
+             android:paddingBottom="10dp"
+             android:background="#90aaaaaa"
+             android:onClick="onCancelRoute">
 
             <Button android:id="@+id/navigation__back_button"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_gravity="center"
-                    android:onClick="onCancelRoute"
-                    android:background="@drawable/btn_back"/>
-            
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:onClick="onCancelRoute"
+                android:background="@drawable/btn_back"/>
+
             <TextView
-                  android:layout_width="0dp"
-                  android:layout_height="wrap_content"
-                  android:layout_weight="1"
-                  android:layout_gravity="center"
-                  android:gravity="center"
-                  android:textSize="20dp"
-                  android:textColor="#556475"
-                  android:text="Tap here to cancel route"/>
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textSize="20dp"
+                android:textColor="#556475"
+                android:text="Tap here to cancel route"/>
         </LinearLayout>
 
         <LinearLayout
@@ -67,37 +100,37 @@
 
             <!-- Previous floor button -->
             <FrameLayout android:id="@+id/navigation__prev_floor_view"
-                         android:layout_width="wrap_content"
-                         android:layout_height="wrap_content"
-                         android:background="#90aaaaaa">
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:background="#90aaaaaa">
 
                 <Button android:id="@+id/navigation__prev_floor_button"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:onClick="onPrevFloor"
-                        android:background="@drawable/btn_prev_floor"/>
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:onClick="onPrevFloor"
+                    android:background="@drawable/btn_prev_floor"/>
             </FrameLayout>
 
             <!-- Current floor label -->
             <TextView android:id="@+id/navigation__current_floor_label"
-                      android:layout_width="50dp"
-                      android:layout_height="50dp"
-                      android:gravity="center"
-                      android:textSize="20dp"
-                      android:textColor="#000000"
-                      android:background="#90dddddd"/>
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:textSize="20dp"
+                android:textColor="#000000"
+                android:background="#90dddddd"/>
 
             <!-- Next floor button -->
             <FrameLayout android:id="@+id/navigation__next_floor_view"
-                         android:layout_width="wrap_content"
-                         android:layout_height="wrap_content"
-                         android:background="#90aaaaaa">
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#90aaaaaa">
 
                 <Button android:id="@+id/navigation__next_floor_button"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:onClick="onNextFloor"
-                        android:background="@drawable/btn_next_floor"/>
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:onClick="onNextFloor"
+                    android:background="@drawable/btn_next_floor"/>
             </FrameLayout>
 
             <View
@@ -107,16 +140,15 @@
 
             <!-- Zoom in button -->
             <FrameLayout android:id="@+id/navigation__zoom_in_view"
-                         android:layout_width="50dp"
-                         android:layout_height="50dp"
-                         android:background="@drawable/zoom_button_circular">
-                <!--android:background="#90aaaaaa">-->
+                 android:layout_width="50dp"
+                 android:layout_height="50dp"
+                 android:background="@drawable/zoom_button_circular">
 
                 <Button android:id="@+id/navigation__zoom_in_button"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:onClick="onZoomIn"
-                        android:background="@drawable/btn_zoom_in"/>
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:onClick="onZoomIn"
+                    android:background="@drawable/btn_zoom_in"/>
             </FrameLayout>
 
             <View
@@ -125,15 +157,15 @@
 
             <!-- Zoom out button -->
             <FrameLayout android:id="@+id/navigation__zoom_out_view"
-                         android:layout_width="50dp"
-                         android:layout_height="50dp"
-                         android:background="@drawable/zoom_button_circular">
+                 android:layout_width="50dp"
+                 android:layout_height="50dp"
+                 android:background="@drawable/zoom_button_circular">
 
                 <Button android:id="@+id/navigation__zoom_out_button"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:onClick="onZoomOut"
-                        android:background="@drawable/btn_zoom_out"/>
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:onClick="onZoomOut"
+                    android:background="@drawable/btn_zoom_out"/>
             </FrameLayout>
 
             <View
@@ -146,29 +178,29 @@
                 android:layout_height="80dp"/>
 
             <FrameLayout android:id="@+id/navigation__adjust_mode_view"
-                         android:layout_width="wrap_content"
-                         android:layout_height="wrap_content"
-                         android:background="@drawable/zoom_button_circular">
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:background="@drawable/zoom_button_circular">
 
                 <Button android:id="@+id/navigation__adjust_mode_button"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:onClick="toggleAdjustMode"
-                        android:background="@drawable/btn_adjust_mode_off"/>
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:onClick="toggleAdjustMode"
+                    android:background="@drawable/btn_adjust_mode_off"/>
             </FrameLayout>
 
         </LinearLayout>
 
         <TextView android:id="@+id/navigation__error_message_label"
-                  android:layout_width="fill_parent"
-                  android:layout_height="70dp"
-                  android:layout_gravity="bottom|left"
-                  android:paddingLeft="5dp"
-                  android:paddingRight="5dp"
-                  android:gravity="center"
-                  android:background="#E8CC5A5A"
-                  android:textSize="15dp"
-                  android:textColor="#ffffff"/>
+            android:layout_width="fill_parent"
+            android:layout_height="70dp"
+            android:layout_gravity="bottom|left"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:gravity="center"
+            android:background="#E8CC5A5A"
+            android:textSize="15dp"
+            android:textColor="#ffffff"/>
 
     </FrameLayout> <!-- Main layout -->
 
