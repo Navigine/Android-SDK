@@ -18,6 +18,7 @@
         android:icon="@drawable/elm_logo"
         android:label="@string/app_name"
         android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
         android:theme="@style/AppTheme">
 
         <activity
